@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1044649251861",
+    "project_id": "vnexpress-demo",
+    "storage_bucket": "vnexpress-demo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044649251861:android:2a2d8c649cda85e7deaa1c",
+        "android_client_info": {
+          "package_name": "com.helloworld"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044649251861-mgpsa04n6u85259lh402jhqcah2n6s3t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.helloworld",
+            "certificate_hash": "2acd5e70587324dadb91c9daee91351244244bb2"
+          }
+        },
+        {
+          "client_id": "1044649251861-qpp7hf3qa7q8n99dv6tqq006vjs9hi4u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgTQnziD1Wj7uWkm52X-aYEzA31S7iZxk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044649251861-qpp7hf3qa7q8n99dv6tqq006vjs9hi4u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
