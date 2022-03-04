@@ -2,12 +2,13 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import 'react-native-gesture-handler';
-import Break from '../common/Break';
 import DraggableFlatList, {useOnCellActiveAnimation} from 'react-native-draggable-flatlist';
 import Animated from 'react-native-reanimated';
 
 import colors from '../../config/colors';
 import tabs from '../../config/tabContent';
+import Break from '../common/Break';
+import Header from '../common/Header';
 
 const CategoryItem = ({item, drag, allowDrag, navigation, index}) => {
   const { isActive } = useOnCellActiveAnimation();
@@ -45,19 +46,18 @@ const CategoryComponent = ({navigation}) => {
   
   return (
     <View style={{backgroundColor: 'white', width: '100%', height: '100%'}}>
-      <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between', padding: 10}}>
-        <TouchableOpacity onPress={() => {
+      <Header 
+        leftIcon={'arrow-back-outline'}
+        onLeftPress={() => {
           navigation.goBack();
-        }}>
-          <Icon name="arrow-back-outline" size={30} color={colors.gray} />
-        </TouchableOpacity>
-        <Text style={{fontSize: 20}}>Chuyên mục</Text>
-        <TouchableOpacity onPress={() => {
+        }}
+        rightIcon={'hammer-outline'}
+        onRightPress={() => {
           setAllowDrag(!allowDrag);
-        }}>
-          <Icon name="hammer-outline" size={30} color={allowDrag? colors.primary : colors.gray} />
-        </TouchableOpacity>
-      </View>
+        }}
+        rightActive={allowDrag}
+        title={'Chuyên mục'}
+      />
       <Break />
       <DraggableFlatList
         data={data}

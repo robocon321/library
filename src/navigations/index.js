@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import RouteNav from './RouteNav'; 
+import RouteNav from './RouteNav';
+import AccountProvider from '../contexts/AccountProvider';
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <RouteNav />
-    </NavigationContainer>
+    <AccountProvider>
+      <NavigationContainer>
+        <RouteNav />
+      </NavigationContainer>
+    </AccountProvider>
   );
 }
