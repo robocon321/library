@@ -5,7 +5,7 @@ import { NewsContext } from '../../contexts/NewsProvider';
 import colors from '../../config/colors';
 import Break from '../common/Break';
 
-const {width, height} = Dimensions.get('screen');
+const {width} = Dimensions.get('screen');
 
 const ContentList = (props) => {
   const {newsState, loadNews} = useContext(NewsContext);
@@ -15,8 +15,8 @@ const ContentList = (props) => {
   }, []);
 
   const loadContentItem = useCallback(({item, index}) => (
-    <ContentItem key={index} navigation={props.navigation} route={props.route} category={props.item.name} key={item.id} item={item}/>
-  ), [])
+    <ContentItem navigation={props.navigation} route={props.route} category={props.item.name} key={item.id} item={item}/>
+  ), []);
   
   return (
     <View style={{width}}>

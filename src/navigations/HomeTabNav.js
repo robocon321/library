@@ -20,8 +20,8 @@ function PodcastsScreen() {
 const Tab = createBottomTabNavigator();
 
 export default HomeTabNav = props => {
-  const {account} = useContext(AccountContext);
-  const {name} = account.data;
+  const {state} = useContext(AccountContext);
+  const {name} = state.data;
 
   return (
     <Tab.Navigator

@@ -3,7 +3,7 @@ import {AsyncStorage} from 'react-native';
 const ACTIONS = {
   LOADING_ACCOUNT: 'LOADING_ACCOUNT',
   SAVE_ACCOUNT: 'SAVE_ACCOUNT',
-  RESET_ACCOUNT: '',
+  RESET_ACCOUNT: 'RESET_ACCOUNT',
   FAIL_ACCOUNT: 'FAIL_ACCOUNT'
 }
 

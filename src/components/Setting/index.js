@@ -9,13 +9,13 @@ import colors from '../../config/colors';
 import {AccountContext} from '../../contexts/AccountProvider';
 
 const SettingComponent = ({navigation, route}) => {
-  const {resetAccount, account} = useContext(AccountContext)
+  const {resetAccount, state} = useContext(AccountContext)
   return (
     <View>
       <ScrollView>
         <Text style={{padding: 15, fontWeight: 'bold', marginTop: 50}}>TÀI KHOẢN</Text>
         {
-          Object.keys(account.data).length ? 
+          Object.keys(state.data).length ? 
           <View>
           <Option
             title='robocon321n'

@@ -5,36 +5,18 @@ import colors from '../../config/colors';
 import moment from 'moment';
 import 'moment/locale/vi';  // without this line it didn't work
 moment.locale('vi');
+
 import { AccountContext } from '../../contexts/AccountProvider';
 
 const {width} = Dimensions.get('screen');
 
-const ContentItem = ({item, category, navigation, route}) => {
+const ContentItem = ({item, navigation, route}) => {
   const {storeNewsURL, state} = useContext(AccountContext);
-
-  const getImgUrlFromItem = () => {
-    const str = item.children[1].value;
-    return str.substring(str.indexOf('src="') + 5, str.indexOf('" >'));
-  }
-  
-  const getDescriptionFromItem = () => {
-    const str = item.children[1].value;
-    return str.substring(str.indexOf('</br>') + 5, str.indexOf('. >'));
-  }
-
-  const data = {
-    title: item.children[0].value,
-    url: item.children[3].value,
-    thumbnail: getImgUrlFromItem(),
-    descrp: getDescriptionFromItem(),
-    time: item.children[2].value,
-    category
-  }
   
   return (
     <TouchableOpacity onPress={() => {
       navigation.navigate('NewsDetailScreen', {
-        data
+        data: item
       });
     }}>
       <View style={{width, backgroundColor: 'white', padding: 10}}>
@@ -43,20 +25,20 @@ const ContentItem = ({item, category, navigation, route}) => {
               style={{width: '100%', height: 250}}
               resizeMode="contain"
               source={{
-                uri: data.thumbnail
+                uri: item.thumbnail
               }}
             />
         </View>
-        <Text style={{fontSize: 15, color: colors.primary}}>{data.title}</Text>
-        <Text style={{fontSize: 15, marginTop: 10}}>{data.descrp}</Text>
+        <Text style={{fontSize: 15, color: colors.primary}}>{item.title}</Text>
+        <Text style={{fontSize: 15, marginTop: 10}}>{item.descrp}</Text>
         <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10}}>
-            <Text style={{marginRight: 10}}>{moment(new Date(data.time)).fromNow()}</Text>
-            <Text>{data.category}</Text>
+            <Text style={{marginRight: 10}}>{moment(new Date(item.time)).fromNow()}</Text>
+            <Text>{item.category}</Text>
           </View>
           <TouchableOpacity onPress={() => {
             if(Object.keys(state.data).length) {
-              storeNewsURL(data);
+              storeNewsURL(item);
             } else {
               Alert.alert(
               "Thông báo",
@@ -76,7 +58,7 @@ const ContentItem = ({item, category, navigation, route}) => {
           }}>
             <Icon name="bookmark-outline" size={30} color={
               Object.keys(state.data).length ? 
-              (state.data.news.filter(item => item.url == data.url).length > 0 ? colors.primary : colors.gray) : colors.gray
+              (state.data.news.filter(item => item.url == item.url).length > 0 ? colors.primary : colors.gray) : colors.gray
             } />
           </TouchableOpacity>
         </View>

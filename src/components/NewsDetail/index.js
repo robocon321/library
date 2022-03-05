@@ -1,21 +1,23 @@
-import { Alert, ActivityIndicator, View, Modal, Text, Pressable, TouchableOpacity } from 'react-native';
+import { Alert, View, Modal, Text, Pressable, TouchableOpacity } from 'react-native';
 import {WebView} from 'react-native-webview';
 import React, {useContext, useEffect, useState} from 'react';
-import Footer from './Footer';
+import LottieView from 'lottie-react-native';
 
-import {NewsDetailContext} from '../../contexts/NewsDetailProvider';
+import Footer from './Footer';
+import { NewsDetailContext } from '../../contexts/NewsDetailProvider';
 import colors from '../../config/colors';
 import styles from './styles';
 
 const NewsDetailComponent = ({navigation, route}) => {
   const {newsDetailState, loadNewsDetail} = useContext(NewsDetailContext);
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
   const [heading, setHeading] = useState(30);
   const [paragraph, setParagraph] = useState(20);
+  const {data} = route.params;
 
   useEffect(() => {
-    if(route.params && route.params.url !== 'undefined') {
-      loadNewsDetail(route.params.url);
+    if(data && data.url !== 'undefined') {
+      loadNewsDetail(data.url);
     } else {
       Alert.alert("Thông báo", "Không tìm thấy kết quả");
       setTimeout(() => {
@@ -38,7 +40,7 @@ const NewsDetailComponent = ({navigation, route}) => {
     <View style={{width: '100%', height: '100%', backgroundColor: 'white'}}>
     {
       newsDetailState.loading ?         
-      <ActivityIndicator size="large" color={colors.gray} />
+      <LottieView source={require('../../assets/lotties/wait.json')} autoPlay loop />
       :  
       <View style={{width: '100%', height: '100%'}}>
       <Modal
@@ -76,7 +78,10 @@ const NewsDetailComponent = ({navigation, route}) => {
           geolocationEnabled
           javaScriptEnabled
           />
-          <Footer navigation={navigation} route={route} onVisibleModal={onVisibleModal} />
+          <Footer 
+            data={data}
+            navigation={navigation} 
+            onVisibleModal={onVisibleModal} />
       </View>
     }
     </View>

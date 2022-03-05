@@ -25,12 +25,12 @@ const LoginProvider = ({navigation, route, children}) => {
                   id: currentProfile.userID,
                   name: currentProfile.name,
                   photo: currentProfile.imageURL,
-                  newsLinks: []
+                  news: []
                 }
                 console.log(obj);
                 const user = await existAccountFirebase(obj);
                 if(!user._exists) await storeFirebase(obj);
-                else obj.newsLinks = user._data.newsLinks;
+                else obj.news = user._data.news;
                 await saveAccount(obj);
                 goBack();
               }
@@ -53,11 +53,11 @@ const LoginProvider = ({navigation, route, children}) => {
         id: userInfo.user.id,
         name: userInfo.user.name,
         photo: userInfo.user.photo,
-        newsLinks: []
+        news: []
       }
       const user = await existAccountFirebase(obj);
       if(!user._exists) await storeFirebase(obj);
-      else obj.newsLinks = user._data.newsLinks;
+      else obj.news = user._data.news;
       await saveAccount(obj);
       goBack();
     } catch (error) {

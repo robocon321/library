@@ -8,15 +8,15 @@ import {getAccountAction, saveAccountAction, resetAccountAction} from '../contex
 export const AccountContext = createContext();
 
 const AccountProvider = (props) => {
-  const [account, dispatch] = useReducer(accountReducer, accountInitState);
+  const [state, dispatch] = useReducer(accountReducer, accountInitState);
 
   useEffect(() => {
     getAccountAction()(dispatch);
   }, []);
 
   useEffect(() => {
-    console.log(account);
-  }, [account]);
+    console.log(state);
+  }, [state]);
 
   const saveAccount = (data) => {
     saveAccountAction(data)(dispatch);
@@ -39,9 +39,23 @@ const AccountProvider = (props) => {
     resetAccountAction()(dispatch);
   }
 
+  const storeNewsURL = (news) => {
+    if(!state.data.news.filter(item => item.url == news.url).length > 0) {
+      state.data.news.push(news);
+      storeFirebase(state.data);
+      saveAccount(state.data);
+      return true;
+    } else {
+      state.data.news = state.data.news.filter(item => item.url != news.url);
+      storeFirebase(state.data);
+      saveAccount(state.data);
+      return false;
+    }
+  }
 
   const value = {
-    account,
+    state,
+    storeNewsURL,
     saveAccount,
     storeFirebase,
     resetAccount,
