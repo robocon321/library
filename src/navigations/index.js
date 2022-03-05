@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import RouteNav from './RouteNav';
 import AccountProvider from '../contexts/AccountProvider';

@@ -3,7 +3,7 @@ import firestore from '@react-native-firebase/firestore';
 
 import accountInitState from './initStates/accountInitState';
 import accountReducer from './reducers/accountReducer';
-import {getAccountAction, saveAccountAction} from '../contexts/actions/accountAction';
+import {getAccountAction, saveAccountAction, resetAccountAction} from '../contexts/actions/accountAction';
 
 export const AccountContext = createContext();
 
@@ -21,7 +21,6 @@ const AccountProvider = (props) => {
   const saveAccount = (data) => {
     saveAccountAction(data)(dispatch);
   }
-
   
   const storeFirebase = async (data) => {
     await firestore()
@@ -36,11 +35,16 @@ const AccountProvider = (props) => {
     });
   }
 
+  const resetAccount = () => {
+    resetAccountAction()(dispatch);
+  }
+
 
   const value = {
     account,
     saveAccount,
-    storeFirebase
+    storeFirebase,
+    resetAccount,
   }
 
   return (

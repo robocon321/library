@@ -3,6 +3,7 @@ import {AsyncStorage} from 'react-native';
 const ACTIONS = {
   LOADING_ACCOUNT: 'LOADING_ACCOUNT',
   SAVE_ACCOUNT: 'SAVE_ACCOUNT',
+  RESET_ACCOUNT: '',
   FAIL_ACCOUNT: 'FAIL_ACCOUNT'
 }
 
@@ -40,7 +41,7 @@ const saveAccountAction = (data) => async (dispatch) => {
  try {
     await AsyncStorage.setItem('account',JSON.stringify(data));
     dispatch({
-      type: ACTIONS.GET_ACCOUNT,
+      type: ACTIONS.SAVE_ACCOUNT,
       payload: {
         data
       }
@@ -55,8 +56,15 @@ const saveAccountAction = (data) => async (dispatch) => {
   }
 }
 
+const resetAccountAction = () => async (dispatch) => {
+  dispatch({
+    type: ACTIONS.RESET_ACCOUNT,
+  })
+}
+
 export {
   ACTIONS,
   getAccountAction,
-  saveAccountAction
+  saveAccountAction,
+  resetAccountAction
 }

@@ -11,6 +11,7 @@ const LoginComponent = (props) => {
   const {
     loginFb,
     loginGmail,
+    goBack
   } = useContext(LoginContext)
 
   return (
@@ -19,7 +20,7 @@ const LoginComponent = (props) => {
         leftIcon='arrow-back-outline'
         title='Đăng nhập'
         onLeftPress={() => {
-          navigation.goBack();
+          goBack();
         }}
       />
       <View style={{alignItems: 'center', marginTop: 50}}>

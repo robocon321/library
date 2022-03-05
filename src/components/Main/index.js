@@ -33,7 +33,7 @@ const Main = ({navigation, route}) => {
   }
 
   const loadContentList = useCallback(({item, index}) => (
-    <NewsProvider key={index}>
+    <NewsProvider key={item.id}>
       <ContentList item={item} navigation={navigation} route={route}/>
     </NewsProvider>
   ), [])
@@ -45,7 +45,9 @@ const Main = ({navigation, route}) => {
           <Icon name='search-outline' size={30} color={colors.gray} />
         </TouchableOpacity>
         <Image style={styles.logo} source={require('../../assets/images/logo.png')}/>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate('SettingScreen');
+        }}>
           <Icon name='settings-outline' size={30} color={colors.gray} />
         </TouchableOpacity>
       </View>

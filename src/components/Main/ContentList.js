@@ -15,7 +15,7 @@ const ContentList = (props) => {
   }, []);
 
   const loadContentItem = useCallback(({item, index}) => (
-    <ContentItem navigation={props.navigation} route={props.route} category={props.item.name} key={item.id} item={item}/>
+    <ContentItem key={index} navigation={props.navigation} route={props.route} category={props.item.name} key={item.id} item={item}/>
   ), [])
   
   return (

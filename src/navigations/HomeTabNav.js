@@ -1,10 +1,13 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import { Text, View } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import colors from '../config/colors';
 import MainScreen from '../screens/Main/index';
 import MyNews from '../screens/MyNews';
+import NotificationScreen from '../screens/Notification';
+import {AccountContext} from '../contexts/AccountProvider';
 
 function PodcastsScreen() {
   return (
@@ -14,17 +17,12 @@ function PodcastsScreen() {
   );
 }
 
-function NotifyScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
-
 const Tab = createBottomTabNavigator();
 
 export default HomeTabNav = props => {
+  const {account} = useContext(AccountContext);
+  const {name} = account.data;
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -37,7 +35,7 @@ export default HomeTabNav = props => {
                 color={color}
               />
             );
-          } else if (route.name === 'Tin của bạn') {
+          } else if (route.name === (name ? name : "Tin của bạn")) {
             return (
               <Icon
                 name='person-outline'
@@ -68,9 +66,9 @@ export default HomeTabNav = props => {
       })}
     >
       <Tab.Screen name="Trang nhất" component={MainScreen} options={{headerShown: false}} />
-      <Tab.Screen name="Tin của bạn" component={MyNews} options={{headerShown: false}} />
+      <Tab.Screen name={name ? name : "Tin của bạn"} component={MyNews} options={{headerShown: false}} />
       <Tab.Screen name="Nghe podcasts" component={PodcastsScreen} options={{headerShown: false}} />
-      <Tab.Screen name="Thông báo" component={NotifyScreen} options={{headerShown: false}} />
+      <Tab.Screen name="Thông báo" component={NotificationScreen} options={{headerShown: false}} />
     </Tab.Navigator>
   );
 }

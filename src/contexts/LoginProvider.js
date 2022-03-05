@@ -1,5 +1,4 @@
 import React, {createContext, useContext} from 'react';
-import {AsyncStorage} from 'react-native';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { Profile, LoginManager } from 'react-native-fbsdk-next';
 import firestore from '@react-native-firebase/firestore';
@@ -25,8 +24,10 @@ const LoginProvider = ({navigation, route, children}) => {
                   type: 'fb',
                   id: currentProfile.userID,
                   name: currentProfile.name,
-                  photo: currentProfile.imageURL
+                  photo: currentProfile.imageURL,
+                  newsLinks: []
                 }
+                console.log(obj);
                 const user = await existAccountFirebase(obj);
                 if(!user._exists) await storeFirebase(obj);
                 else obj.newsLinks = user._data.newsLinks;
@@ -51,7 +52,8 @@ const LoginProvider = ({navigation, route, children}) => {
         type: 'gmail',
         id: userInfo.user.id,
         name: userInfo.user.name,
-        photo: userInfo.user.photo
+        photo: userInfo.user.photo,
+        newsLinks: []
       }
       const user = await existAccountFirebase(obj);
       if(!user._exists) await storeFirebase(obj);

@@ -16,10 +16,14 @@ export default (state = accountInitState, {type, payload}) => {
         loading: false
       }
       break;
+    case ACTIONS.RESET_ACCOUNT:
+      state = {...accountInitState};
+      break;
     default:
       state = {
         ...state,
-        error: payload.error
+        error: payload.error,
+        loading: false
       }
       break;
   }
