@@ -6,7 +6,8 @@ import NewsDetailScreen from '../screens/NewsDetail/index';
 import HomeTabNav from './HomeTabNav';
 import LoginScreen from '../screens/Login';
 import PlashScreen from '../screens/PlashScreen/index';
-import SettingScreen from '../screens/Setting';
+import SettingScreen from '../screens/Setting/index';
+import PodcastDetailScreen from '../screens/PodcastDetail/index';
 
 const RouteStack = createStackNavigator();
 
@@ -37,6 +38,9 @@ const RouteNav = ()  => {
         </RouteStack.Group>
         <RouteStack.Group>
           <RouteStack.Screen name="LoginScreen" component={LoginScreen} />
+        </RouteStack.Group>
+        <RouteStack.Group>
+          <RouteStack.Screen name="PodcastDetailScreen" component={PodcastDetailScreen} />
         </RouteStack.Group>
         <RouteStack.Group screenOptions={{ presentation: 'modal' }}>
           <RouteStack.Screen name="CategoryScreen" component={CategoryScreen} />

@@ -8,14 +8,7 @@ import MainScreen from '../screens/Main/index';
 import MyNews from '../screens/MyNews';
 import NotificationScreen from '../screens/Notification';
 import {AccountContext} from '../contexts/AccountProvider';
-
-function PodcastsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Nghe Podcasts</Text>
-    </View>
-  );
-}
+import PodcastsScreen from '../screens/Podcasts/index';
 
 const Tab = createBottomTabNavigator();
 

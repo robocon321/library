@@ -14,10 +14,6 @@ const AccountProvider = (props) => {
     getAccountAction()(dispatch);
   }, []);
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   const saveAccount = (data) => {
     saveAccountAction(data)(dispatch);
   }
