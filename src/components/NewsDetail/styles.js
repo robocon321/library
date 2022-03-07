@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
+import colors from '../../config/colors';
 
 const {width, height} = Dimensions.get('screen');
 
@@ -50,6 +51,13 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
+  container: {width: '100%', height: '100%', backgroundColor: 'white'},
+  wrapModal: {width: '100%', height: '100%'},
+  fontSize15: {color: colors.primary, fontSize: 15, marginRight: 20},
+  fontSize20: {color: colors.primary, fontSize: 20, marginRight: 20},
+  fontSize25: {color: colors.primary, fontSize: 25, marginRight: 20},
+  fontSize30: {color: colors.primary, fontSize: 30, marginRight: 20},
+  webview: {marginTop: -280, marginBottom: 50},
 });
 
 export default styles;

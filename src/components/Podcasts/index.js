@@ -5,6 +5,7 @@ import Header from '../common/Header';
 import colors from '../../config/colors';
 import { PodcastContext } from '../../contexts/PodcastProvider';
 import PodcastItem from './PodcastItem';
+import styles from './styles';
 
 const subjects = [
   {
@@ -49,23 +50,19 @@ const PodcastComponent = ({navigation, route}) => {
   return (
     <View>
       <ScrollView>
-        <Text style={{
-          marginTop: 60, 
-          fontSize: 25, 
-          color: colors.primary, 
-        }}>Các chương trình</Text>
+        <Text style={styles.programs}>Các chương trình</Text>
         <FlatList 
-          style={{marginVertical: 10}}
+          style={styles.list}
           data={subjects}
           renderItem={({item}) => (
             <TouchableOpacity
-              style={{marginHorizontal: 5}}
+              style={styles.itemSubject}
               onPress={() => {
                 setUrl(item.url);
               }}
               >
               <Image 
-                style = {{width: 200, height: 200, borderRadius: 5}}
+                style = {styles.itemImageSubject}
                 source = {item.image}  
               />
             </TouchableOpacity>
@@ -87,7 +84,7 @@ const PodcastComponent = ({navigation, route}) => {
           <ActivityIndicator size="large" color="#00ff00" />        
         }
       </ScrollView>
-      <View style={{position: 'absolute', top: 0, left: 0, width: '100%'}}>
+      <View style={styles.header}>
         <Header
           title='Nghe Podcasts'
           rightIcon='cloud-download-outline'

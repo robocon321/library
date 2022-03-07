@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Dimensions, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../../config/colors';
@@ -7,8 +7,7 @@ import 'moment/locale/vi';  // without this line it didn't work
 moment.locale('vi');
 
 import { AccountContext } from '../../contexts/AccountProvider';
-
-const {width} = Dimensions.get('screen');
+import styles from './styles';
 
 const ContentItem = ({item, navigation, route}) => {
   const {storeNewsURL, state} = useContext(AccountContext);
@@ -19,21 +18,21 @@ const ContentItem = ({item, navigation, route}) => {
         data: item
       });
     }}>
-      <View style={{width, backgroundColor: 'white', padding: 10}}>
+      <View style={styles.itemContainer}>
         <View>
           <Image 
-              style={{width: '100%', height: 250}}
+              style={styles.itemImage}
               resizeMode="contain"
               source={{
                 uri: item.thumbnail
               }}
             />
         </View>
-        <Text style={{fontSize: 15, color: colors.primary}}>{item.title}</Text>
-        <Text style={{fontSize: 15, marginTop: 10}}>{item.descrp}</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10}}>
-            <Text style={{marginRight: 10}}>{moment(new Date(item.time)).fromNow()}</Text>
+        <Text style={styles.itemTitle}>{item.title}</Text>
+        <Text style={styles.itemDescrp}>{item.descrp}</Text>
+        <View style={styles.itemWrapFooter}>
+          <View style={styles.itemWrapFooterComponent}>
+            <Text style={styles.itemTime}>{moment(new Date(item.time)).fromNow()}</Text>
             <Text>{item.category}</Text>
           </View>
           <TouchableOpacity onPress={() => {

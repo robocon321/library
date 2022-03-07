@@ -5,6 +5,7 @@ import CustomButton from '../common/CustomButton';
 import Header from '../common/Header';
 import Break from '../common/Break';
 import { LoginContext } from '../../contexts/LoginProvider';
+import styles from './styles';
 
 
 const LoginComponent = (props) => {
@@ -15,7 +16,7 @@ const LoginComponent = (props) => {
   } = useContext(LoginContext)
 
   return (
-    <View style={{backgroundColor: 'white', height: '100%'}}>
+    <View style={styles.container}>
       <Header 
         leftIcon='arrow-back-outline'
         title='Đăng nhập'
@@ -23,7 +24,7 @@ const LoginComponent = (props) => {
           goBack();
         }}
       />
-      <View style={{alignItems: 'center', marginTop: 50}}>
+      <View style={styles.wrapButton}>
         <CustomButton 
           onPress={loginGmail}
           title='Đăng nhập bằng Google' 
@@ -33,19 +34,7 @@ const LoginComponent = (props) => {
           color='black'
           fontSize={15}
           width={300}
-          styles={{
-              marginTop: 10,
-              borderRadius: 6,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.20,
-              shadowRadius: 1.41,
-
-              elevation: 2,
-          }}
+          styles={styles.button}
         />
         <CustomButton 
           onPress={loginFb}
@@ -56,57 +45,17 @@ const LoginComponent = (props) => {
           color={'black'}
           fontSize={15}
           width={300}
-          styles={{
-              marginTop: 10,
-              borderRadius: 6,
-              shadowColor: "#000",
-              shadowOffset: {
-                width: 0,
-                height: 1,
-              },
-              shadowOpacity: 0.20,
-              shadowRadius: 1.41,
-
-              elevation: 2,
-          }}
+          styles={styles.button}
           />
       </View>
       <View style={{alignItems: 'center'}}>
-        <Text style={{
-          width: 300,
-          marginTop: 20,
-          textAlign: 'center',
-          fontSize: 20,
-          color: 'blue',
-          textDecorationLine:'underline'
-        }}>Đăng nhập bằng email</Text>
+        <Text style={styles.loginEmail}>Đăng nhập bằng email</Text>
       </View>
-      <View style={{
-        width: '100%',
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-      }}>
+      <View style={styles.wrapFooter}>
         <Break />
-        <View style={{
-          paddingVertical: 15,
-          flexDirection: 'row', 
-          justifyContent: 'center', 
-          alignItems: 'center',
-        }}>
-          <Text style={{
-              marginRight: 10,
-              textAlign: 'center',
-              color: 'black',
-              fontSize: 20,
-            }}>Chưa có tài khoản</Text>
-            <Text style={{
-              marginRight: 10,
-              textAlign: 'center',
-              fontSize: 20,
-              color: 'blue',
-              textDecorationLine: 'underline'
-            }}>Tạo tài khoản</Text>
+        <View style={styles.containerComponentFooter}>
+          <Text style={styles.existAccountText}>Chưa có tài khoản</Text>
+            <Text style={styles.createAccountText}>Tạo tài khoản</Text>
         </View>
       </View>
     </View>

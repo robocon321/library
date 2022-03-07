@@ -1,9 +1,11 @@
-import { FlatList, View, Text, Dimensions, ActivityIndicator } from 'react-native'
+import { FlatList, View, Dimensions, ActivityIndicator } from 'react-native'
 import React, {useEffect, useContext, useCallback} from 'react'
+
 import ContentItem from './ContentItem'; 
 import { NewsContext } from '../../contexts/NewsProvider';
 import colors from '../../config/colors';
 import Break from '../common/Break';
+import styles from './styles';
 
 const {width} = Dimensions.get('screen');
 
@@ -14,14 +16,14 @@ const ContentList = (props) => {
     loadNews(props.item.rss);
   }, []);
 
-  const loadContentItem = useCallback(({item, index}) => (
+  const loadContentItem = useCallback(({item}) => (
     <ContentItem navigation={props.navigation} route={props.route} category={props.item.name} key={item.id} item={item}/>
   ), []);
   
   return (
     <View style={{width}}>
       {newsState.loading ? 
-      <View style={{marginTop: 20}}>
+      <View style={styles.listIndicator}>
         <ActivityIndicator size="large" color={colors.gray} />
       </View>
       :       

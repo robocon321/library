@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 import SoundPlayer from 'react-native-sound-player';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import cheerio from 'cheerio';
 import Header from '../common/Header';
 import ProgressBar from '../common/ProgressBar';
 import colors from '../../config/colors';
+import styles from './styles';
 
 const PodcastDetailComponent = ({navigation, route}) => {
   const podcast = route.params;
@@ -22,8 +23,6 @@ const PodcastDetailComponent = ({navigation, route}) => {
     minute: 0,
     second: 0
   });
-
-  const ref = useRef();
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -136,24 +135,24 @@ const PodcastDetailComponent = ({navigation, route}) => {
   
   return (
     <View>
-      <ScrollView style={{paddingVertical: 60, paddingHorizontal: 20}}>
-        <View style={{alignItems: 'center'}}>
+      <ScrollView style={styles.container}>
+        <View style={styles.wrapImage}>
           <Image
-            style={{borderRadius: 5, width: 300, height: 200}}
+            style={styles.image}
             resizeMode='stretch'
             source={{uri: podcast.thumbnail}} />
         </View>
-        <Text style={{fontSize: 20, fontWeight: 'bold', color: 'black', marginVertical: 20}}>{podcast.title}</Text>
+        <Text style={styles.title}>{podcast.title}</Text>
         <ProgressBar 
           max={maxTime.minute * 60 + maxTime.second} 
           progress={time.minute * 60 + time.second} 
           onRefresh={onRefresh} 
           />
-        <View style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'space-between', alignItems: 'center'}}>
-          <Text ref={ref} style={{color: 'black'}}>{time.minute < 10 ? `0${time.minute}` : time.minute}:{time.second < 10 ? `0${time.second}` : time.second}</Text>
-          <Text style={{color: 'black'}}>{maxTime.minute < 10 ? `0${maxTime.minute}` : maxTime.minute}:{maxTime.second < 10 ? `0${maxTime.second}` : maxTime.second}</Text>
+        <View style={styles.wrapTime}>
+          <Text style={styles.time}>{time.minute < 10 ? `0${time.minute}` : time.minute}:{time.second < 10 ? `0${time.second}` : time.second}</Text>
+          <Text style={styles.time}>{maxTime.minute < 10 ? `0${maxTime.minute}` : maxTime.minute}:{maxTime.second < 10 ? `0${maxTime.second}` : maxTime.second}</Text>
         </View>
-        <View style={{flexDirection: 'row', marginVertical: 10, justifyContent: 'space-between', alignItems: 'center', width: '100%'}}>
+        <View style={styles.controll}>
           <TouchableOpacity onPress={() => controlTime(-10)}>
             <Icon name='play-back-outline' size={40} color={colors.gray} />
           </TouchableOpacity>
@@ -169,7 +168,7 @@ const PodcastDetailComponent = ({navigation, route}) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-      <View style={{position: 'absolute', top: 0, left: 0, width: '100%'}}>
+      <View style={styles.header}>
         <Header
           onLeftPress={() => {
             navigation.goBack();

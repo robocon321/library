@@ -13,7 +13,7 @@ import axios from 'axios';
 import SoundPlayer from 'react-native-sound-player';
 import RNFS from 'react-native-fs';
 
-import colors from '../../config/colors';
+import styles from './styles';
 
 
 const PodcastItem = ({
@@ -122,28 +122,28 @@ const PodcastItem = ({
 
   return (
     <TouchableOpacity 
-      style={{backgroundColor: 'white', padding: 10, marginVertical: 10}}
+      style={styles.itemContainer}
       onPress={() => {
         navigation.navigate('PodcastDetailScreen', item);
       }}
     >
-      <Text style={{color: colors.primary, fontSize: 20}}>{item.tag}</Text>
-      <Text style={{fontSize: 30, fontWeight: 'bold', color: 'black'}}>{item.title}</Text>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <Text style={styles.itemTag}>{item.tag}</Text>
+      <Text style={styles.itemTitle}>{item.title}</Text>
+      <View style={styles.itemControl}>
+        <View style={styles.itemControlLeft}>
           <TouchableOpacity onPress={playAudio}>
             <Icon name={active ? 'pause-circle-outline' : 'play-circle-outline'} size={50} color='blue' />
           </TouchableOpacity>
-          <Text style={{marginLeft: 20}}>{item.time}</Text>
+          <Text style={styles.itemTime}>{item.time}</Text>
         </View>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{marginRight: 20}}>Tải về </Text>
+        <View style={styles.itemControlRight}>
+          <Text style={styles.itemDownload}>Tải về </Text>
           <TouchableOpacity onPress={preDownloadAudio}>
             <Icon name='arrow-down-circle-outline' size={30} color='gray' />
           </TouchableOpacity>
         </View>
       </View>
-      <Text style={{fontSize: 20}}>{item.descrp}</Text>
+      <Text style={styles.itemDescrp}>{item.descrp}</Text>
     </TouchableOpacity>
   )
 }

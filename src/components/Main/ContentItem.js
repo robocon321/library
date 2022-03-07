@@ -1,13 +1,13 @@
-import { View, Text, Image, TouchableOpacity, Dimensions, Alert } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native';
 import React, {useContext} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import colors from '../../config/colors';
 import moment from 'moment';
 import 'moment/locale/vi';  // without this line it didn't work
 moment.locale('vi');
-import { AccountContext } from '../../contexts/AccountProvider';
 
-const {width} = Dimensions.get('screen');
+import { AccountContext } from '../../contexts/AccountProvider';
+import styles from './styles';
+import colors from '../../config/colors';
 
 const ContentItem = ({item, category, navigation, route}) => {
   const {storeNewsURL, state} = useContext(AccountContext);
@@ -37,21 +37,21 @@ const ContentItem = ({item, category, navigation, route}) => {
         data
       });
     }}>
-      <View style={{width, backgroundColor: 'white', padding: 10}}>
+      <View style={styles.itemContainer}>
         <View>
           <Image 
-              style={{width: '100%', height: 250}}
+              style={styles.itemImage}
               resizeMode="contain"
               source={{
                 uri: data.thumbnail
               }}
             />
         </View>
-        <Text style={{fontSize: 15, color: colors.primary}}>{data.title}</Text>
-        <Text style={{fontSize: 15, marginTop: 10}}>{data.descrp}</Text>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center'}}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10}}>
-            <Text style={{marginRight: 10}}>{moment(new Date(data.time)).fromNow()}</Text>
+        <Text style={styles.itemTitle}>{data.title}</Text>
+        <Text style={styles.itemDescrp}>{data.descrp}</Text>
+        <View style={styles.itemWrapInfo}>
+          <View style={styles.itemContainerComponentInfo}>
+            <Text style={styles.itemTime}>{moment(new Date(data.time)).fromNow()}</Text>
             <Text>{data.category}</Text>
           </View>
           <TouchableOpacity onPress={() => {

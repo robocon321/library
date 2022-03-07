@@ -7,13 +7,14 @@ import Break from '../common/Break';
 import Icon from 'react-native-vector-icons/Ionicons';
 import colors from '../../config/colors';
 import {AccountContext} from '../../contexts/AccountProvider';
+import styles from './styles';
 
 const SettingComponent = ({navigation, route}) => {
   const {resetAccount, state} = useContext(AccountContext)
   return (
     <View>
       <ScrollView>
-        <Text style={{padding: 15, fontWeight: 'bold', marginTop: 50}}>TÀI KHOẢN</Text>
+        <Text style={styles.firstTitle}>TÀI KHOẢN</Text>
         {
           Object.keys(state.data).length ? 
           <View>
@@ -47,20 +48,20 @@ const SettingComponent = ({navigation, route}) => {
               }}
             />
         }
-        <Text style={{padding: 15, fontWeight: 'bold'}}>TIN CỦA BẠN</Text>
+        <Text style={styles.title}>TIN CỦA BẠN</Text>
         <View>
           <Option 
             title='Danh sách theo dõi'
             justifyContent='space-between'
             RightComponent={() => <Icon name='chevron-forward-outline' size={20} color='gray' />}
           />
-          <Text style={{padding: 15, fontWeight: 'bold'}}>TIỆN ÍCH</Text>
+          <Text style={styles.title}>TIỆN ÍCH</Text>
           <Option 
             title='Lịch đấu - Kết quả bóng đá'
             justifyContent='space-between'
             RightComponent={() => 
               <Switch
-                style={{height: 20}}
+                style={styles.switch}
                 trackColor={colors.gray}
                 thumbColor={colors.primary}
                 ios_backgroundColor={colors.gray} />
@@ -72,14 +73,14 @@ const SettingComponent = ({navigation, route}) => {
             justifyContent='space-between'
             RightComponent={() => 
               <Switch
-                style={{height: 20}}
+                style={styles.switch}
                 trackColor={colors.gray}
                 thumbColor={colors.primary}
                 ios_backgroundColor={colors.gray} />
             }
           />
         </View>
-        <Text style={{padding: 15, fontWeight: 'bold'}}>HOẠT ĐỘNG</Text>
+        <Text style={styles.title}>HOẠT ĐỘNG</Text>
         <View>
           <Option 
             title='Bình luận của bạn'
@@ -98,13 +99,13 @@ const SettingComponent = ({navigation, route}) => {
             justifyContent='space-between'
             RightComponent={() => <Icon name='chevron-forward-outline' size={20} color='gray' />}
           />
-          <Text style={{padding: 15, fontWeight: 'bold'}}>HOẠT ĐỘNG</Text>
+          <Text style={styles.title}>HOẠT ĐỘNG</Text>
           <Option 
             title='Chế độ đọc nhanh'
             justifyContent='space-between'
             RightComponent={() => 
               <Switch
-                style={{height: 20}}
+                style={styles.switch}
                 trackColor={colors.gray}
                 thumbColor={colors.primary}
                 ios_backgroundColor={colors.gray} />
@@ -116,7 +117,7 @@ const SettingComponent = ({navigation, route}) => {
             justifyContent='space-between'
             RightComponent={() => 
               <Switch
-                style={{height: 20}}
+                style={styles.switch}
                 trackColor={colors.gray}
                 thumbColor={colors.primary}
                 ios_backgroundColor={colors.gray} />
@@ -142,7 +143,7 @@ const SettingComponent = ({navigation, route}) => {
           />
 
         </View>
-        <Text style={{padding: 15, fontWeight: 'bold'}}>LIÊN HỆ</Text>
+        <Text style={styles.title}>LIÊN HỆ</Text>
         <View>
           <Option 
             title='Gợi ý ứng dụng'
@@ -164,7 +165,7 @@ const SettingComponent = ({navigation, route}) => {
         </View>
 
       </ScrollView>
-      <View style={{position: 'absolute', width: '100%', top: 0, left: 0}}>
+      <View style={styles.header}>
         <Header 
             leftIcon='arrow-back-outline'
             title='Thiết lập'

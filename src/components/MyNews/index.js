@@ -5,6 +5,7 @@ import colors from '../../config/colors';
 import { AccountContext } from '../../contexts/AccountProvider';
 import Break from '../common/Break';
 import ContentItem from './ContentItem';
+import styles from './styles';
 
 
 const MyNewsComponent = ({navigation, route}) => {
@@ -21,7 +22,7 @@ const MyNewsComponent = ({navigation, route}) => {
   ), [])
 
   return (
-    <ScrollView style={{backgroundColor: 'white'}}>
+    <ScrollView style={styles.container}>
       <FlatList 
         data={data.news} 
         renderItem={loadContentItem} 
@@ -30,9 +31,9 @@ const MyNewsComponent = ({navigation, route}) => {
           <Break />
         )}/>
         <Break />
-        <View style={{paddingHorizontal:40, marginVertical: 20}}>
-          <Text style={{textAlign: 'center', fontSize: 20, color: 'black', fontWeight: 'bold'}}>Thêm nội dung yêu thích</Text>
-          <Text style={{textAlign: 'center', fontSize: 20, fontWeight: '200', color: 'black', marginVertical: 20}}>Đăng nhập để thiết lập danh sách chuyên mục và tác giả yêu thích</Text>
+        <View style={styles.wrapNotify}>
+          <Text style={styles.favoriteNews}>Thêm nội dung yêu thích</Text>
+          <Text style={styles.loginNews}>Đăng nhập để thiết lập danh sách chuyên mục và tác giả yêu thích</Text>
           <Button onPress={() => {
             if(Object.keys(data).length) {
               Alert.alert('Thông báo', 'Hiện tại chưa phát triển nội dung này');

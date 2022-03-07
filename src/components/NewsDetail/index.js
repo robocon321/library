@@ -37,12 +37,12 @@ const NewsDetailComponent = ({navigation, route}) => {
   }
 
   return (
-    <View style={{width: '100%', height: '100%', backgroundColor: 'white'}}>
+    <View style={styles.container}>
     {
       newsDetailState.loading ?         
       <LottieView source={require('../../assets/lotties/wait.json')} autoPlay loop />
       :  
-      <View style={{width: '100%', height: '100%'}}>
+      <View style={styles.wrapModal}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -53,22 +53,22 @@ const NewsDetailComponent = ({navigation, route}) => {
         }}>
           <Pressable style={styles.modalView} onPress={() => {}}>
             <TouchableOpacity onPress={() => onChangeFontSize(15)}>
-              <Text style={{color: colors.primary, fontSize: 15, marginRight: 20}}>A</Text>
+              <Text style={styles.fontSize15}>A</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onChangeFontSize(20)}>
-              <Text style={{color: colors.primary, fontSize: 20, marginRight: 20}}>A</Text>
+              <Text style={styles.fontSize20}>A</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onChangeFontSize(25)}>
-              <Text style={{color: colors.primary, fontSize: 25, marginRight: 20}}>A</Text>
+              <Text style={styles.fontSize25}>A</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => onChangeFontSize(30)}>
-              <Text style={{color: colors.primary, fontSize: 30, marginRight: 20}}>A</Text>
+              <Text style={styles.fontSize30}>A</Text>
             </TouchableOpacity>
           </Pressable>
         </Pressable>
       </Modal>
         <WebView 
-          style={{marginTop: -280, marginBottom: 50}} 
+          style={styles.webview} 
           source={{ html: newsDetailState.data + `<style> p { font-size: ${paragraph}px!important} h1 {font-size: ${heading}px!important}; </style>` }}
           automaticallyAdjustContentInsets
           injectJavaScript

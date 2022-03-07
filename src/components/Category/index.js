@@ -9,6 +9,7 @@ import colors from '../../config/colors';
 import tabs from '../../config/tabContent';
 import Break from '../common/Break';
 import Header from '../common/Header';
+import styles from './styles';
 
 const CategoryItem = ({item, drag, allowDrag, navigation, index}) => {
   const { isActive } = useOnCellActiveAnimation();
@@ -24,8 +25,8 @@ const CategoryItem = ({item, drag, allowDrag, navigation, index}) => {
         paddingHorizontal: 20,
         backgroundColor: isActive ? colors.primary : 'white'
         }}>
-        <View style={{}}>
-          <Text style={{fontSize: 20, color: isActive ? 'white' : 'gray'}}>{item.name}</Text>
+        <View>
+          <Text style={styles.name}>{item.name}</Text>
         </View>
         {allowDrag && 
         <TouchableOpacity onLongPress={drag}>
@@ -45,7 +46,7 @@ const CategoryComponent = ({navigation}) => {
   }, [allowDrag]);
   
   return (
-    <View style={{backgroundColor: 'white', width: '100%', height: '100%'}}>
+    <View style={styles.container}>
       <Header 
         leftIcon={'arrow-back-outline'}
         onLeftPress={() => {
